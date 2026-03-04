@@ -1,0 +1,136 @@
+{
+  "name": "Clara Answers — Demo → Agent v1 → Onboarding → Agent v2",
+  "description": "End-to-end automation pipeline that converts demo call transcripts into preliminary Retell agent configurations (v1), then updates them with onboarding data (v2). Equivalent to an n8n workflow but implemented as a deterministic Python CLI pipeline for zero-cost reproducibility.",
+  "version": "1.0.0",
+  "trigger": {
+    "type": "manual_or_batch",
+    "command": "python -m src.main --input data --output outputs --mode rules --batch",
+    "description": "The pipeline is triggered by running the CLI command. It processes all accounts defined in data/manifest.json sequentially."
+  },
+  "nodes": [
+    {
+      "id": "1_ingest",
+      "name": "Ingest & Load Manifest",
+      "type": "data_loader",
+      "description": "Reads data/manifest.json to discover all accounts and their version entries (v1=demo, v2=onboarding). Validates manifest schema before proceeding.",
+      "inputs": ["data/manifest.json"],
+      "outputs": ["account_list", "version_entries"],
+      "implementation": "src/main.py → load_manifest()"
+    },
+    {
+      "id": "2_read_transcript",
+      "name": "Read Transcript File",
+      "type": "file_reader",
+      "description": "Reads the raw transcript text file specified in each version entry. Normalizes whitespace and extracts the account_id from the filename if needed.",
+      "inputs": ["input_path from manifest"],
+      "outputs": ["raw_transcript_text"],
+      "implementation": "src/extract/extractor.py → process_transcript() entry"
+    },
+    {
+      "id": "3_extract",
+      "name": "Extract Structured Data",
+      "type": "extraction_engine",
+      "description": "Parses the transcript to extract structured fields: company_name, business_hours, office_address, services_supported, emergency_definition, routing rules, call_transfer_rules, integration_constraints, flow summaries. Supports two modes: (a) rules — deterministic regex extraction (zero-cost, offline), (b) ollama — local LLM extraction via Ollama API (zero-cost, offline).",
+      "inputs": ["raw_transcript_text", "extraction_mode"],
+      "outputs": ["raw_memo_dict"],
+      "implementation": "src/extract/rules_fallback.py → extract() OR src/extract/ollama_client.py + src/extract/prompt.py"
+    },
+    {
+      "id": "4_normalize",
+      "name": "Normalize & Validate Memo",
+      "type": "data_processor",
+      "description": "Post-processes the raw extraction output: normalizes types, strips unsupported/hallucinated fields by checking against transcript text, coerces integers, fills missing required keys with safe defaults (null/[]/{}). Validates against REQUIRED_MEMO_SCHEMA.",
+      "inputs": ["raw_memo_dict", "raw_transcript_text"],
+      "outputs": ["normalized_memo_dict"],
+      "implementation": "src/extract/normalize.py → normalize_memo(), strip_unsupported_fields()"
+    },
+    {
+      "id": "5_merge",
+      "name": "Deep Merge with Previous Version",
+      "type": "version_merger",
+      "description": "For v2+, merges the new extraction with the previous version's memo using deep_merge_strict(). New non-null/non-empty values override old values; old values are preserved if the new version has null/empty. Prevents accidental data loss.",
+      "inputs": ["normalized_memo_dict", "prev_memo_dict (from v1)"],
+      "outputs": ["merged_memo_dict"],
+      "implementation": "src/extract/normalize.py → deep_merge_strict()"
+    },
+    {
+      "id": "6_evidence",
+      "name": "Build Evidence Map",
+      "type": "evidence_builder",
+      "description": "For each memo field, extracts supporting text snippets from the transcript and assigns a confidence score (0.9 = found in transcript, 0.6 = partially inferred, 0.3 = carried from previous version, 0.0 = not found). Produces evidence.json for auditability.",
+      "inputs": ["merged_memo_dict", "raw_transcript_text"],
+      "outputs": ["evidence_dict"],
+      "implementation": "src/extract/normalize.py → build_evidence_from_memo()"
+    },
+    {
+      "id": "7_generate_prompt",
+      "name": "Generate Agent System Prompt",
+      "type": "prompt_generator",
+      "description": "Generates a complete Retell-compatible system prompt including: Business Hours Flow (greeting → purpose → name/number → route → fallback → anything else → close), After-Hours Flow (greeting → emergency check → collect info → transfer → fallback → close), Call Transfer Protocol, Transfer-Fail Protocol, and General Guidelines.",
+      "inputs": ["merged_memo_dict"],
+      "outputs": ["system_prompt_text"],
+      "implementation": "src/generate/agent_prompt.py → build_system_prompt()"
+    },
+    {
+      "id": "8_build_spec",
+      "name": "Build Agent Spec JSON",
+      "type": "spec_builder",
+      "description": "Assembles the complete Retell Agent Draft Spec including: agent_name, voice_style, system_prompt, key_variables, tool_invocation_placeholders, call_transfer_protocol, transfer_fail_protocol, version, source_type.",
+      "inputs": ["merged_memo_dict", "system_prompt_text"],
+      "outputs": ["agent_spec_dict"],
+      "implementation": "src/generate/agent_prompt.py → build_agent_spec()"
+    },
+    {
+      "id": "9_idempotency",
+      "name": "Idempotency Check",
+      "type": "hash_comparator",
+      "description": "Computes SHA-256 hash of the memo (excluding updated_at_utc) and compares with the existing output. If unchanged, skips writing to avoid redundant updates. Ensures the pipeline is safe to re-run.",
+      "inputs": ["merged_memo_dict", "existing_memo_on_disk"],
+      "outputs": ["should_write (boolean)"],
+      "implementation": "src/extract/extractor.py → _hash_memo(), _is_unchanged()"
+    },
+    {
+      "id": "10_write_outputs",
+      "name": "Write Versioned Outputs",
+      "type": "file_writer",
+      "description": "Writes all artifacts to outputs/accounts/<account_id>/<version>/: memo.json, agent_spec.json, evidence.json, system_prompt.txt. Creates directories as needed.",
+      "inputs": ["memo_dict", "agent_spec_dict", "evidence_dict", "system_prompt_text"],
+      "outputs": ["files on disk"],
+      "implementation": "src/extract/extractor.py → process_transcript()"
+    },
+    {
+      "id": "11_changelog",
+      "name": "Generate Changelog",
+      "type": "diff_generator",
+      "description": "For v2, compares v1 and v2 memos field-by-field. Produces a human-readable changes.md showing what changed, with nested diff support for business_hours, call_transfer_rules, etc. Only truly changed fields are listed.",
+      "inputs": ["v1_memo_dict", "v2_memo_dict"],
+      "outputs": ["changes.md"],
+      "implementation": "src/versioning/changelog.py → generate_changelog()"
+    },
+    {
+      "id": "12_summary",
+      "name": "Write Summary Report",
+      "type": "report_writer",
+      "description": "Writes outputs/summary/report.json with run metadata: timestamps, mode, per-account success/failure, and any errors encountered.",
+      "inputs": ["per_account_results", "errors"],
+      "outputs": ["report.json"],
+      "implementation": "src/main.py → run_batch()"
+    }
+  ],
+  "data_flow": [
+    "1_ingest → 2_read_transcript → 3_extract → 4_normalize → 5_merge → 6_evidence → 7_generate_prompt → 8_build_spec → 9_idempotency → 10_write_outputs → 11_changelog → 12_summary"
+  ],
+  "error_handling": {
+    "strategy": "per-account isolation",
+    "description": "Each account is processed independently. If one account fails, others continue. Errors are logged and collected in the summary report."
+  },
+  "idempotency": {
+    "strategy": "content-hash comparison",
+    "description": "SHA-256 hash of memo content (excluding timestamps) is compared before writing. Identical content skips disk writes."
+  },
+  "batch_capability": {
+    "supported": true,
+    "description": "All accounts in manifest.json are processed in a single batch run. Can be filtered to a single account with --account flag."
+  },
+  "n8n_equivalence_note": "This workflow is implemented as a Python CLI pipeline rather than n8n nodes because: (1) n8n requires Docker and a running server, adding complexity; (2) the Python implementation is fully deterministic, zero-cost, and reproducible with a single command; (3) the workflow JSON above documents the exact same node-by-node data flow that an n8n workflow would implement. To convert to n8n: each node above maps to an n8n 'Function' or 'Execute Command' node, with the manifest.json trigger replacing an n8n webhook trigger."
+}

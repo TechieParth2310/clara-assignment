@@ -1,0 +1,97 @@
+{
+  "account_id": "bens_electric",
+  "version": "v2",
+  "fields": {
+    "company_name": {
+      "value": "Ben's Electric Solutions",
+      "snippets": [
+        "ctric\nCompany Name: Ben's Electric Solutions\nPrimary Contact: Be"
+      ],
+      "confidence": 0.9
+    },
+    "business_hours": {
+      "value": {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "start": "8am",
+        "end": "4:30pm",
+        "timezone": "Mountain Time (MT) \u2014 Calgary"
+      },
+      "snippets": [
+        "494\nBusiness Hours: Monday to Friday 8am to 4:",
+        "ss Hours: Monday to Friday 8am to 4:30pm\nTime",
+        "s: Monday to Friday 8am to 4:30pm\nTime Zone",
+        "ay to Friday 8am to 4:30pm\nTime Zone: Mountain",
+        "o 4:30pm\nTime Zone: Mountain Time (MT) \u2014 Calgary, Alberta, Canada\nTr"
+      ],
+      "confidence": 0.9
+    },
+    "office_address": {
+      "value": null,
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "services_supported": {
+      "value": [
+        "Sales"
+      ],
+      "snippets": [
+        "urgency. Filter out sales calls and spam. Do"
+      ],
+      "confidence": 0.9
+    },
+    "emergency_definition": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "emergency_routing_rules": {
+      "value": {},
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "non_emergency_routing_rules": {
+      "value": {
+        "description": "Clara answers all incoming business calls. Qualify callers by asking name, address, job type, and urgency. Filter out sales calls and spam. Do not mention the service call fee proactively \u2014 only disclose if the caller asks about minimum fees. For callers who insist on speaking to a person, transfer to Ben."
+      },
+      "snippets": [
+        "ents\nRouting Rules: Clara answers all incoming business calls. Qualify callers by asking name, address, job type, and urgency. Filter out sales calls and spam. "
+      ],
+      "confidence": 0.9
+    },
+    "call_transfer_rules": {
+      "value": {
+        "transfer_number": "403-870-8494",
+        "max_attempts": 1,
+        "retry_delay_seconds": 0,
+        "fail_message": "I was unable to connect you. Let me take a message and arrange a callback."
+      },
+      "snippets": [
+        "ionsteam.com\nPhone: 403-870-8494\nBusiness Hours: Mon"
+      ],
+      "confidence": 0.9
+    },
+    "integration_constraints": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "after_hours_flow_summary": {
+      "value": "Policy: No after-hours service for general customers. Voicemail with next-business-day callback. One emergency exception: GNM Pressure Washing property management company \u2014 Shelley is primary contact, calls related to gas stations (Chevron and Esso) should be patched through to Ben directly.",
+      "snippets": [
+        "70-8494\nAfter-Hours Policy: No after-hours service for general customers. Voicemail with next-business-day callback. One emergency exception: GNM Pressure Washi"
+      ],
+      "confidence": 0.9
+    },
+    "office_hours_flow_summary": {
+      "value": null,
+      "snippets": [],
+      "confidence": 0.0
+    }
+  }
+}

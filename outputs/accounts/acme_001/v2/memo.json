@@ -1,0 +1,46 @@
+{
+  "account_id": "acme_001",
+  "company_name": "Acme Corporation",
+  "business_hours": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "start": "8am",
+    "end": "6pm",
+    "timezone": "Central Time (CT)"
+  },
+  "office_address": "123 Main Street, Springfield, IL 62701",
+  "services_supported": [
+    "Sales",
+    "Support",
+    "Billing"
+  ],
+  "emergency_definition": [],
+  "emergency_routing_rules": {},
+  "non_emergency_routing_rules": {
+    "description": "Route to sales for all new leads, billing for invoicing questions, support otherwise"
+  },
+  "call_transfer_rules": {
+    "transfer_number": "+1-800-555-0199",
+    "max_attempts": 1,
+    "retry_delay_seconds": 0,
+    "fail_message": "I was unable to connect you. Let me take a message and arrange a callback."
+  },
+  "integration_constraints": [],
+  "after_hours_flow_summary": "Voicemail with callback within 4 business hours",
+  "office_hours_flow_summary": null,
+  "questions_or_unknowns": [
+    "emergency_definition: not found in transcript",
+    "emergency_routing_rules: not found in transcript",
+    "integration_constraints: not found in transcript",
+    "office_hours_flow_summary: not found in transcript"
+  ],
+  "notes": null,
+  "version": "v2",
+  "source_type": "onboarding",
+  "updated_at_utc": "2026-03-04T17:15:22.146704+00:00"
+}

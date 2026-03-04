@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.bak
+
+# Audio/video recordings (large files, not needed for submission)
+*.m4a
+*.mp4
+*.mp3
+*.wav
+
+# Do NOT ignore outputs — they are deliverables
+# Do NOT ignore data/ — transcripts are required inputs

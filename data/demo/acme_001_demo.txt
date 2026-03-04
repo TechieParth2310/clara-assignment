@@ -1,0 +1,12 @@
+Account ID: acme_001
+Company Name: Acme Corp
+Address: 123 Main Street, Springfield, IL 62701
+Primary Contact: Jane Smith
+Business Hours: Monday to Friday 9am to 5pm
+Time Zone: Central Time (CT)
+Routing Rules: Route to sales for new enquiries, support for existing customers
+Transfer Number: +1-800-555-0100
+After-Hours: Take a message and offer a next-day callback
+
+DEMO CALL TRANSCRIPT
+Sales rep explains Clara's capabilities. Client confirms hours and routing preferences.

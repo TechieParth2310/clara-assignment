@@ -1,0 +1,28 @@
+Account ID: bens_electric
+Company Name: Ben's Electric Solutions
+Primary Contact: Ben Penoyer
+Email: info@benselectricsolutionsteam.com
+Phone: 403-870-8494
+Business Hours: Monday to Friday 8am to 4:30pm
+Time Zone: Mountain Time (MT) — Calgary, Alberta, Canada
+Transfer Number: 403-870-8494
+After-Hours Policy: No after-hours service for general customers. Voicemail with next-business-day callback. One emergency exception: GNM Pressure Washing property management company — Shelley is primary contact, calls related to gas stations (Chevron and Esso) should be patched through to Ben directly.
+Services: Residential electrical, commercial electrical, service calls, EV charger installation, panel changes, hot tub electrical wiring, renovations, tenant improvements
+Routing Rules: Clara answers all incoming business calls. Qualify callers by asking name, address, job type, and urgency. Filter out sales calls and spam. Do not mention the service call fee proactively — only disclose if the caller asks about minimum fees. For callers who insist on speaking to a person, transfer to Ben.
+Service Call Fee: $115 call-out fee to get to the job site. Hourly rate is $90 per hour for residential, billed in 30-minute increments at $49.99 per half-hour after the call-out fee.
+Emergency Definition: After-hours emergency only applies to GNM Pressure Washing property management. All other after-hours callers get voicemail.
+CRM Integration: Jobber — integration in progress with Clara.
+Notification Preferences: Post-call email and SMS to info@benselectricsolutionsteam.com and Ben's main phone number.
+
+ONBOARDING CALL TRANSCRIPT — January 2026
+Clara onboarding specialist Paven leads the call with Ben Penoyer and Bharat (sales rep).
+Contract signed via DocuSign — 12-month term confirmed, pricing locked for three months at $249 per month for 500 minutes.
+Business hours confirmed directly from website: Monday to Friday 8am to 4:30pm.
+Ben is the sole person taking calls currently. Field technicians and contractors have direct numbers and do not need to go through Clara.
+Phone setup: Ben currently uses one number as both personal and business. Plan is to set up a second personal number so Clara can take all business line calls. In the interim, call forwarding is set to forward unanswered or declined calls to Clara.
+Clara can transfer calls to Ben's number if a caller explicitly needs to speak with a person.
+After-hours: No general emergency service. Exception is GNM Pressure Washing — Shelley is the contact, they manage approximately 20 gas stations (Chevron and Esso locations around Calgary). If they call after hours, the call patches through to Ben directly.
+Post-call notifications: email and SMS to Ben for every call handled by Clara.
+Follow-up call scheduled for Friday at 2pm — Ben to make test calls before then and review dashboard.
+Agent will be made available for testing same day as onboarding call with a test number shared by email.
+Clara will go live on the main business line once Ben has the second personal number set up.

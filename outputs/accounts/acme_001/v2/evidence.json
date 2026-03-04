@@ -1,0 +1,101 @@
+{
+  "account_id": "acme_001",
+  "version": "v2",
+  "fields": {
+    "company_name": {
+      "value": "Acme Corporation",
+      "snippets": [
+        "e_001\nCompany Name: Acme Corporation\nBusiness Hours: Mon"
+      ],
+      "confidence": 0.9
+    },
+    "business_hours": {
+      "value": {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "start": "8am",
+        "end": "6pm",
+        "timezone": "Central Time (CT)"
+      },
+      "snippets": [
+        "ion\nBusiness Hours: Monday to Friday 8am to 6p",
+        "ss Hours: Monday to Friday 8am to 6pm\nTime Zon",
+        "s: Monday to Friday 8am to 6pm\nTime Zone: C",
+        "ay to Friday 8am to 6pm\nTime Zone: Central",
+        "m to 6pm\nTime Zone: Central Time (CT)\nRouting Rules: Rout"
+      ],
+      "confidence": 0.9
+    },
+    "office_address": {
+      "value": "123 Main Street, Springfield, IL 62701",
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "services_supported": {
+      "value": [
+        "Sales",
+        "Support",
+        "Billing"
+      ],
+      "snippets": [
+        "ing Rules: Route to sales for all new leads,",
+        "nvoicing questions, support otherwise\nTransfer",
+        "for all new leads, billing for invoicing quest"
+      ],
+      "confidence": 0.9
+    },
+    "emergency_definition": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "emergency_routing_rules": {
+      "value": {},
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "non_emergency_routing_rules": {
+      "value": {
+        "description": "Route to sales for all new leads, billing for invoicing questions, support otherwise"
+      },
+      "snippets": [
+        "(CT)\nRouting Rules: Route to sales for all new leads, billing for invoicing questions, support otherwise\nTransfer Number: +1"
+      ],
+      "confidence": 0.9
+    },
+    "call_transfer_rules": {
+      "value": {
+        "transfer_number": "+1-800-555-0199",
+        "max_attempts": 1,
+        "retry_delay_seconds": 0,
+        "fail_message": "I was unable to connect you. Let me take a message and arrange a callback."
+      },
+      "snippets": [
+        "se\nTransfer Number: +1-800-555-0199\nAfter-Hours: Voicem"
+      ],
+      "confidence": 0.9
+    },
+    "integration_constraints": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "after_hours_flow_summary": {
+      "value": "Voicemail with callback within 4 business hours",
+      "snippets": [
+        "5-0199\nAfter-Hours: Voicemail with callback within 4 business hours\n\nONBOARDING CALL TR"
+      ],
+      "confidence": 0.9
+    },
+    "office_hours_flow_summary": {
+      "value": null,
+      "snippets": [],
+      "confidence": 0.0
+    }
+  }
+}

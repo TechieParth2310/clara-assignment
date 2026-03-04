@@ -1,0 +1,45 @@
+{
+  "account_id": "bens_electric",
+  "company_name": "Ben's Electric Solutions",
+  "business_hours": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "start": "8am",
+    "end": "4:30pm",
+    "timezone": "Mountain Time (MT) \u2014 Calgary"
+  },
+  "office_address": null,
+  "services_supported": [
+    "Sales"
+  ],
+  "emergency_definition": [],
+  "emergency_routing_rules": {},
+  "non_emergency_routing_rules": {
+    "description": "Clara answers all incoming business calls. Qualify callers by asking name, address, job type, and urgency. Filter out sales calls and spam. Do not mention the service call fee proactively \u2014 only disclose if the caller asks about minimum fees. For callers who insist on speaking to a person, transfer to Ben."
+  },
+  "call_transfer_rules": {
+    "transfer_number": "403-870-8494",
+    "max_attempts": 1,
+    "retry_delay_seconds": 0,
+    "fail_message": "I was unable to connect you. Let me take a message and arrange a callback."
+  },
+  "integration_constraints": [],
+  "after_hours_flow_summary": "Policy: No after-hours service for general customers. Voicemail with next-business-day callback. One emergency exception: GNM Pressure Washing property management company \u2014 Shelley is primary contact, calls related to gas stations (Chevron and Esso) should be patched through to Ben directly.",
+  "office_hours_flow_summary": null,
+  "questions_or_unknowns": [
+    "office_address: not found in transcript",
+    "emergency_definition: not found in transcript",
+    "emergency_routing_rules: not found in transcript",
+    "integration_constraints: not found in transcript",
+    "office_hours_flow_summary: not found in transcript"
+  ],
+  "notes": null,
+  "version": "v2",
+  "source_type": "onboarding",
+  "updated_at_utc": "2026-03-04T20:18:41.135459+00:00"
+}

@@ -1,0 +1,101 @@
+{
+  "account_id": "acme_001",
+  "version": "v1",
+  "fields": {
+    "company_name": {
+      "value": "Acme Corp",
+      "snippets": [
+        "e_001\nCompany Name: Acme Corp\nAddress: 123 Main S"
+      ],
+      "confidence": 0.9
+    },
+    "business_hours": {
+      "value": {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "start": "9am",
+        "end": "5pm",
+        "timezone": "Central Time (CT)"
+      },
+      "snippets": [
+        "ith\nBusiness Hours: Monday to Friday 9am to 5p",
+        "ss Hours: Monday to Friday 9am to 5pm\nTime Zon",
+        "s: Monday to Friday 9am to 5pm\nTime Zone: C",
+        "ay to Friday 9am to 5pm\nTime Zone: Central",
+        "m to 5pm\nTime Zone: Central Time (CT)\nRouting Rules: Rout"
+      ],
+      "confidence": 0.9
+    },
+    "office_address": {
+      "value": "123 Main Street, Springfield, IL 62701",
+      "snippets": [
+        "Acme Corp\nAddress: 123 Main Street, Springfield, IL 62701\nPrimary Contact: Ja"
+      ],
+      "confidence": 0.9
+    },
+    "services_supported": {
+      "value": [
+        "Sales",
+        "Support"
+      ],
+      "snippets": [
+        "ing Rules: Route to sales for new enquiries,",
+        "for new enquiries, support for existing custom"
+      ],
+      "confidence": 0.9
+    },
+    "emergency_definition": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "emergency_routing_rules": {
+      "value": {},
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "non_emergency_routing_rules": {
+      "value": {
+        "description": "Route to sales for new enquiries, support for existing customers"
+      },
+      "snippets": [
+        "(CT)\nRouting Rules: Route to sales for new enquiries, support for existing customers\nTransfer Number: +1"
+      ],
+      "confidence": 0.9
+    },
+    "call_transfer_rules": {
+      "value": {
+        "transfer_number": "+1-800-555-0100",
+        "max_attempts": 1,
+        "retry_delay_seconds": 0,
+        "fail_message": "I was unable to connect you. Let me take a message and arrange a callback."
+      },
+      "snippets": [
+        "rs\nTransfer Number: +1-800-555-0100\nAfter-Hours: Take a"
+      ],
+      "confidence": 0.9
+    },
+    "integration_constraints": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "after_hours_flow_summary": {
+      "value": "Take a message and offer a next-day callback",
+      "snippets": [
+        "5-0100\nAfter-Hours: Take a message and offer a next-day callback\n\nDEMO CALL TRANSCRI"
+      ],
+      "confidence": 0.9
+    },
+    "office_hours_flow_summary": {
+      "value": null,
+      "snippets": [],
+      "confidence": 0.0
+    }
+  }
+}

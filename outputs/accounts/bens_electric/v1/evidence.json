@@ -1,0 +1,91 @@
+{
+  "account_id": "bens_electric",
+  "version": "v1",
+  "fields": {
+    "company_name": {
+      "value": "Ben's Electric Solutions",
+      "snippets": [
+        "ctric\nCompany Name: Ben's Electric Solutions\nPrimary Contact: Be"
+      ],
+      "confidence": 0.9
+    },
+    "business_hours": {
+      "value": {
+        "days": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "start": null,
+        "end": null,
+        "timezone": "Mountain Time (MT) \u2014 Calgary"
+      },
+      "snippets": [
+        "494\nBusiness Hours: Monday to Friday, business",
+        "ss Hours: Monday to Friday, business hours (ex",
+        "oarding)\nTime Zone: Mountain Time (MT) \u2014 Calgary, Alberta, Canada\nTr"
+      ],
+      "confidence": 0.9
+    },
+    "office_address": {
+      "value": null,
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "services_supported": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "emergency_definition": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "emergency_routing_rules": {
+      "value": {},
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "non_emergency_routing_rules": {
+      "value": {
+        "description": "Route calls to Ben for emergency situations after hours."
+      },
+      "snippets": [
+        "day.\n\nROUTING RULES\nRoute calls to Ben for emergency situations after hours.\nQualify jobs before"
+      ],
+      "confidence": 0.9
+    },
+    "call_transfer_rules": {
+      "value": {
+        "transfer_number": "403-870-8494",
+        "max_attempts": 1,
+        "retry_delay_seconds": 0,
+        "fail_message": "I was unable to connect you. Let me take a message and arrange a callback."
+      },
+      "snippets": [
+        "ionsteam.com\nPhone: 403-870-8494\nBusiness Hours: Mon"
+      ],
+      "confidence": 0.9
+    },
+    "integration_constraints": {
+      "value": [],
+      "snippets": [],
+      "confidence": 0.0
+    },
+    "after_hours_flow_summary": {
+      "value": "Policy: Ben is personally on call for emergencies after hours. Non-urgent after-hours calls should take a message and offer next-business-day callback.",
+      "snippets": [
+        "70-8494\nAfter-Hours Policy: Ben is personally on call for emergencies after hours. Non-urgent after-hours calls should take a message and offer next-business-da"
+      ],
+      "confidence": 0.9
+    },
+    "office_hours_flow_summary": {
+      "value": null,
+      "snippets": [],
+      "confidence": 0.0
+    }
+  }
+}

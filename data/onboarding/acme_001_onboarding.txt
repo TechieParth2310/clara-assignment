@@ -1,0 +1,10 @@
+Account ID: acme_001
+Company Name: Acme Corporation
+Business Hours: Monday to Friday 8am to 6pm
+Time Zone: Central Time (CT)
+Routing Rules: Route to sales for all new leads, billing for invoicing questions, support otherwise
+Transfer Number: +1-800-555-0199
+After-Hours: Voicemail with callback within 4 business hours
+
+ONBOARDING CALL TRANSCRIPT
+Team confirms updated hours and new routing rules. Transfer number has changed.

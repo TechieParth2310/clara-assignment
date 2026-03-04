@@ -1,0 +1,34 @@
+{
+  "accounts": [
+    {
+      "account_id": "bens_electric",
+      "versions": [
+        {
+          "version": "v1",
+          "source_type": "demo",
+          "input_path": "data/demo/bens_electric_demo.txt"
+        },
+        {
+          "version": "v2",
+          "source_type": "onboarding",
+          "input_path": "data/onboarding/bens_electric_onboarding.txt"
+        }
+      ]
+    },
+    {
+      "account_id": "acme_001",
+      "versions": [
+        {
+          "version": "v1",
+          "source_type": "demo",
+          "input_path": "data/demo/acme_001_demo.txt"
+        },
+        {
+          "version": "v2",
+          "source_type": "onboarding",
+          "input_path": "data/onboarding/acme_001_onboarding.txt"
+        }
+      ]
+    }
+  ]
+}

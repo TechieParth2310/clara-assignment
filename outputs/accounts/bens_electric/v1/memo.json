@@ -1,0 +1,44 @@
+{
+  "account_id": "bens_electric",
+  "company_name": "Ben's Electric Solutions",
+  "business_hours": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "start": null,
+    "end": null,
+    "timezone": "Mountain Time (MT) \u2014 Calgary"
+  },
+  "office_address": null,
+  "services_supported": [],
+  "emergency_definition": [],
+  "emergency_routing_rules": {},
+  "non_emergency_routing_rules": {
+    "description": "Route calls to Ben for emergency situations after hours."
+  },
+  "call_transfer_rules": {
+    "transfer_number": "403-870-8494",
+    "max_attempts": 1,
+    "retry_delay_seconds": 0,
+    "fail_message": "I was unable to connect you. Let me take a message and arrange a callback."
+  },
+  "integration_constraints": [],
+  "after_hours_flow_summary": "Policy: Ben is personally on call for emergencies after hours. Non-urgent after-hours calls should take a message and offer next-business-day callback.",
+  "office_hours_flow_summary": null,
+  "questions_or_unknowns": [
+    "office_address: not found in transcript",
+    "services_supported: not found in transcript",
+    "emergency_definition: not found in transcript",
+    "emergency_routing_rules: not found in transcript",
+    "integration_constraints: not found in transcript",
+    "office_hours_flow_summary: not found in transcript"
+  ],
+  "notes": null,
+  "version": "v1",
+  "source_type": "demo",
+  "updated_at_utc": "2026-03-04T20:18:41.132345+00:00"
+}

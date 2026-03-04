@@ -1,0 +1,17 @@
+{
+  "run_started_at_utc": "2026-03-04T20:26:24.814702+00:00",
+  "run_finished_at_utc": "2026-03-04T20:26:24.819406+00:00",
+  "mode": "rules",
+  "model": null,
+  "per_account": {
+    "bens_electric": {
+      "v1_success": true,
+      "v2_success": true
+    },
+    "acme_001": {
+      "v1_success": true,
+      "v2_success": true
+    }
+  },
+  "errors": []
+}
