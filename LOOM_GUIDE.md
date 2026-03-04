@@ -1,297 +1,150 @@
-# Loom Video Guide + Submission Checklist
+# Loom Video Script + Submission Guide
 
-Everything you need to record the video and submit the assignment.
+> **GitHub Repo (SUBMIT THIS):** https://github.com/TechieParth2310/clara-assignment
+> **Target video length:** 4–5 minutes
 
 ---
 
-## PART 1 — Pre-Recording Setup
+## BEFORE YOU RECORD — Setup Checklist
 
-### Step 1: Run a clean verification first
+Do these things BEFORE clicking Record:
 
-Open your terminal and run:
+1. Open **Terminal** — `cd /Users/parthkothawade/clara-assignment`
+2. Open **VS Code** — open the `clara-assignment` folder, file explorer visible on left
+3. Open **Browser** — drag `outputs/diff_viewer.html` into Chrome and open it
+4. Open **GitHub** in another browser tab — https://github.com/TechieParth2310/clara-assignment
+5. Zoom terminal font: `Cmd +` three times so text is big
+6. Zoom VS Code: `Cmd +` twice
+7. Turn off notifications — top right menu bar → Do Not Disturb ON
+8. Open Loom → choose **Screen + Cam** mode → 1080p quality
+9. Do a 5-second test recording first to confirm mic and screen look good
 
-```bash
-cd /Users/parthkothawade/clara-assignment
-rm -rf outputs/accounts outputs/summary outputs/diff_viewer.html
-bash scripts/bootstrap_and_verify.sh
+---
+
+## THE SCRIPT — Say This, Show This, Type This
+
+---
+
+### [0:00 – 0:25] INTRO
+
+**Look at camera. Say:**
+> "Hi, my name is Parth. I'm going to walk you through the Clara onboarding automation pipeline I built for this assignment.
+> The problem: when a new business signs up for Clara Answers, two calls happen — a demo call first, then a formal onboarding call. Right now someone manually listens to both and configures the AI agent. This pipeline automates that completely. Let me show you."
+
+---
+
+### [0:25 – 1:00] SHOW THE PROJECT STRUCTURE
+
+**Switch to VS Code. File explorer is open on the left.**
+
+**Say:**
+> "Here's the project. The `src` folder has all the pipeline code — extraction, versioning, output generation. The `data` folder has the real call transcripts. `outputs` is what gets generated on every run. `scripts` has the bootstrap script."
+
+**While saying this, slowly click to expand in VS Code:**
+- Click `src/` — show `extract/`, `generate/`, `versioning/`
+- Click `data/` — show `demo/` and `onboarding/`
+- Click `outputs/` — show `accounts/` and `diff_viewer.html`
+
+**Click `data/manifest.json`. Say:**
+> "This is the manifest — it tells the pipeline which transcripts belong to which client. We have Ben's Electric Solutions here — the real client from the assignment — plus a test account."
+
+---
+
+### [1:00 – 1:30] SHOW THE REAL TRANSCRIPTS
+
+**Click `data/demo/bens_electric_demo.txt`. Say:**
+> "Demo call transcript for Ben Penoyer — electrical contractor in Calgary. Extracted from the real Fireflies recording. This gave us the rough initial details."
+
+**Click `data/onboarding/bens_electric_onboarding.txt`. Say:**
+> "Onboarding call — transcribed from the real M4A recording using Whisper AI. This confirmed exact details: Monday to Friday 8am to 4:30pm, $115 service call fee, and a special after-hours emergency exception for GNM Pressure Washing — a property management client who manages 20 gas stations. Real facts, from the real call."
+
+---
+
+### [1:30 – 2:30] RUN THE PIPELINE LIVE
+
+**Click Terminal. Type `clear` and press Enter.**
+
+**Type exactly this and press Enter:**
+```
+rm -rf outputs/accounts/bens_electric && .venv/bin/python -m src.main --batch --mode rules
 ```
 
-You should see 11 lines of `✅` ending with `All checks passed ✅`.
-If anything fails, do not record yet — fix it first.
+**Say while it runs:**
+> "Deleting Ben's Electric outputs and running fresh. Watch the logs — loaded manifest, extracting v1 from the demo call, writing outputs, now reading the onboarding call, extracting v2, merging with v1, writing changelog, generating the dashboard. Done. Zero errors."
 
-### Step 2: Prepare your screen before hitting Record
-
-Open these things in this order so you can switch between them smoothly:
-
-| Window               | What to have open                                                        |
-| -------------------- | ------------------------------------------------------------------------ |
-| **Terminal**         | `cd /Users/parthkothawade/clara-assignment && source .venv/bin/activate` |
-| **VS Code / Editor** | Project root open, file explorer visible on the left                     |
-| **Browser tab 1**    | `outputs/diff_viewer.html` already open                                  |
-| **Browser tab 2**    | (optional) GitHub repo page                                              |
-
-Increase your terminal font to **14pt minimum** — small fonts look unreadable in videos.
-In VS Code use `Cmd +` twice to zoom in.
-Turn off all notifications (Slack, email, calendar).
-
-### Step 3: Install Loom
-
-1. Download from https://www.loom.com/download
-2. Choose **"Screen + Cam"** mode when recording
-3. Set video quality to 1080p
-4. Do a 10-second test recording first to check your mic and screen look good
-
----
-
-## PART 2 — The 5-Minute Script (Say This, Show This)
-
-Read this section carefully before recording. The timestamps are your guide.
-
----
-
-### [0:00 – 0:30] What You Built
-
-**Say:**
-
-> "Hi, I'm [your name]. I built an onboarding automation pipeline for Clara Answers.
-> The problem it solves is this: when a new business becomes a Clara customer,
-> a sales demo call happens first, then a formal onboarding call happens later.
-> Right now, someone has to manually listen to both calls and configure the AI agent.
-> This pipeline automates that entirely. It reads the transcripts, extracts all the
-> operational rules, and generates a production-ready AI agent spec — without any
-> manual work."
-
-**Show:**
-
-- VS Code open with the project folder
-- Slowly scroll through the left panel so they can see: `src/`, `data/`, `outputs/`, `workflows/`, `scripts/`, `README.md`
-- Just a 10-second scroll, no need to open anything yet
-
----
-
-### [0:30 – 1:15] The Input Data
-
-**Say:**
-
-> "Here is the input. We have two transcripts for the same client — Acme Corp.
-> First, the demo call transcript."
-
-**Show:** Open `data/demo/acme_001_demo.txt`
-
-- Scroll through it briefly
-- Point out: the company name, business hours (9am-5pm), transfer number (0100), services (Sales + Support)
-
-**Say:**
-
-> "And here is the onboarding call — same client, a few weeks later."
-
-**Show:** Open `data/onboarding/acme_001_onboarding.txt`
-
-- Point out: hours changed to 8am-6pm, transfer number changed to 0199, Billing was added as a service
-
-**Say:**
-
-> "Both transcripts are registered in `manifest.json` — this is the config that tells
-> the pipeline which files belong to which client."
-
-**Show:** Open `data/manifest.json` — point to the v1/v2 entries
-
----
-
-### [1:15 – 2:15] Run the Pipeline Live
-
-**Say:**
-
-> "Let me delete the outputs so you can watch the pipeline generate everything
-> from scratch."
-
-**In terminal, type and run:**
-
-```bash
-rm -rf outputs/accounts outputs/summary outputs/diff_viewer.html
-python -m src.main --batch --mode rules
+**Now run it again immediately. Type:**
 ```
-
-**While the logs appear, say:**
-
-> "It loaded the manifest... extracted v1 from the demo call... wrote the outputs...
-> extracted v2 from the onboarding call... merged it with v1... wrote the changelog...
-> generated the diff viewer dashboard... and finished with zero errors.
-> The whole pipeline ran in under a second."
-
-**Now show idempotency — run it again immediately:**
-
-```bash
-python -m src.main --batch --mode rules
+.venv/bin/python -m src.main --batch --mode rules
 ```
 
 **Say:**
-
-> "I run it again — and notice: it says UNCHANGED, skipping write.
-> It computed the outputs, compared them to what's already on disk using a content hash,
-> found nothing changed, and skipped the write. This is idempotency —
-> you can run it a hundred times and it won't corrupt or duplicate anything."
+> "I run it again without deleting. It says UNCHANGED — skipping write. It hashed the outputs, compared them, found nothing changed, skipped. This is idempotency — run it a hundred times, same result, no corruption."
 
 ---
 
-### [2:15 – 3:15] Show the Outputs + Dashboard
+### [2:30 – 4:00] SHOW THE DASHBOARD
+
+**Switch to browser with `diff_viewer.html` open. Refresh the page first (Cmd+R).**
 
 **Say:**
+> "The pipeline auto-generates this visual dashboard. Single HTML file, no server needed, opens in any browser."
 
-> "Now let me show you what was generated. Instead of opening JSON files manually,
-> the pipeline auto-generates a visual dashboard."
+**Point to the stat cards at the top. Say:**
+> "Two accounts processed, changes detected, zero errors, confidence breakdown. The green bar shows how many fields were extracted with HIGH confidence — found word-for-word in the transcript."
 
-**Switch to browser — open `outputs/diff_viewer.html`**
+**Click on Ben's Electric section → click "🔀 Changes" tab. Say:**
+> "This is the diff. Every field that changed from demo call to onboarding call. Old value red on left, confirmed value green on right. Hours went from unknown to 8am–4:30pm. After-hours policy updated to include the GNM emergency exception. Routing rules got more specific."
 
-**Point out the top dashboard section:**
+**Click "📊 Full Comparison" tab. Say:**
+> "Full comparison — all fields side by side. Yellow rows are changes. HIGH badge means the pipeline found that value verbatim in the transcript."
 
-> "At the top: 1 account processed, 7 field changes, 0 errors, 4 unresolved unknowns.
-> The green bar is the confidence breakdown — most fields were extracted with HIGH
-> confidence because they were found verbatim in the transcript."
+**Click "⚠ Unknowns" tab. Say:**
+> "This is the anti-hallucination feature. Any field the pipeline could not find is listed here as unknown — never invented. Office address, emergency routing — not in the transcript, so flagged honestly."
 
-**Click the "Changes" tab on the account card:**
+**Click "🔬 Confidence" tab. Say:**
+> "Confidence heatmap — green is HIGH confidence, grey dash means not found. You can see exactly which fields are solid and which need a human."
 
-> "This is the diff view. Every field that changed between the demo call and the
-> onboarding call is shown here — old value in red, new value in green.
-> Company name, business hours, services, transfer number, routing rules,
-> after-hours policy — seven changes in total."
-
-**Click "Full Comparison":**
-
-> "This shows every field side by side for v1 and v2.
-> The yellow rows are the ones that changed.
-> The HIGH badges mean the pipeline found that value verbatim in the transcript —
-> it didn't guess or invent anything."
-
-**Click "Unknowns":**
-
-> "This is important. Four fields were not found in either transcript —
-> emergency definition, emergency routing, integration constraints, and office hours flow.
-> Instead of hallucinating a value, the pipeline explicitly flags them as unknown.
-> This is by design — safe automation means being honest about what you don't know."
-
-**Click "Confidence" tab:**
-
-> "This is the evidence heatmap — confidence score per field per version.
-> Green means it was found directly in the transcript text.
-> Grey dash means it wasn't found — that's why those fields are in the unknowns list."
+**Click "📄 System Prompt" tab. Say:**
+> "This is the actual system prompt generated for the Retell agent. Business hours flow, after-hours flow with the GNM exception, transfer protocol, screening rules. Auto-generated from the extracted data. Ready to paste into Retell."
 
 ---
 
-### [3:15 – 4:00] The Agent Spec + System Prompt
+### [4:00 – 4:30] SHOW OUTPUT FILES + GITHUB
 
-**Say:**
+**Switch to VS Code. Open `outputs/accounts/bens_electric/v2/agent_spec.json`. Say:**
+> "Agent spec JSON — all extracted fields plus system prompt — ready for Retell API upload."
 
-> "The pipeline doesn't just extract data — it generates the actual AI agent
-> configuration, ready to deploy on Retell."
+**Open `outputs/accounts/bens_electric/changes.md`. Say:**
+> "Human-readable changelog with timestamps. Full audit trail of what changed and when."
 
-**Click "System Prompt" tab in the dashboard:**
-
-> "This is the v2 system prompt. It was generated automatically from the extracted data.
-> It has a Business Hours Flow — greeting, ask purpose, collect name and number,
-> route to the right team, transfer, and fallback if the transfer fails.
-> It has an After-Hours Flow — check for emergency, collect details, attempt transfer,
-> apologise if it fails.
-> And a Transfer-Fail Protocol — what the agent says if it can't connect the caller."
-
-**Say:**
-
-> "This is ready to paste directly into Retell. The tool placeholders —
-> TRANSFER_CALL, LOG_CALL_RECORD, SCHEDULE_CALLBACK —
-> map directly to Retell's function calling format."
-
-**Switch to VS Code, open `outputs/accounts/acme_001/v2/agent_spec.json`:**
-
-> "The agent spec file contains the system prompt plus all the key variables —
-> business hours, timezone, transfer number — and the tool invocation placeholders."
+**Switch to browser → GitHub tab: https://github.com/TechieParth2310/clara-assignment. Say:**
+> "Full source code is here on GitHub — public repo. All the pipeline code, transcripts, and generated outputs are included. README has setup guide and architecture."
 
 ---
 
-### [4:00 – 4:40] Architecture
+### [4:30 – 4:45] CLOSE
 
-**Say:**
-
-> "Let me show how it works under the hood."
-
-**Open `workflows/ARCHITECTURE.md` in VS Code:**
-
-> "Pipeline A reads the demo call, extracts v1.
-> Pipeline B reads the onboarding call, extracts v2, then merges it with v1
-> using a deep merge — new values override old ones, but if a field was in v1
-> and not mentioned in the onboarding call, it's preserved rather than wiped.
-> Then six quality gates run: schema validation, anti-hallucination check,
-> evidence alignment, idempotency guard, merge safety, and optional strict mode."
+**Look at camera. Say:**
+> "To summarise — this pipeline reads two real call transcripts, extracts structured data without hallucinating, versions it from demo to onboarding, generates a production-ready agent spec and system prompt, and produces a visual dashboard. One command, zero errors, fully idempotent. Thank you."
 
 ---
 
-### [4:40 – 5:00] Close
+## SUBMIT THESE TWO THINGS
 
-**Say:**
-
-> "To summarise — this pipeline takes two call transcripts for any client,
-> extracts structured operational rules without hallucinating,
-> versions the data from v1 to v2 with a human-readable changelog,
-> generates a production-ready Retell agent spec and system prompt,
-> and produces a visual dashboard showing everything.
-> It runs with one command, it's idempotent, it's fully logged, and it works offline.
-> The README has the full setup guide. Thank you."
-
-**Show the README for the last 10 seconds** — just scroll through it slowly.
+| What | Link |
+|------|------|
+| **GitHub Repo** | https://github.com/TechieParth2310/clara-assignment |
+| **Loom Video** | *(paste your link here after recording)* |
 
 ---
 
-## PART 3 — GitHub Setup
+## FINAL CHECKLIST
 
-Run these commands **once** to push to GitHub:
-
-```bash
-cd /Users/parthkothawade/clara-assignment
-
-# Initialize and commit everything
-git init
-git add .
-git commit -m "feat: complete Clara onboarding automation pipeline"
-
-# Create a new repo at https://github.com/new first, then:
-git remote add origin https://github.com/<your-username>/clara-assignment.git
-git branch -M main
-git push -u origin main
-```
-
-If your repo is **private**, add the hiring team as collaborators:
-**GitHub.com → Your repo → Settings → Collaborators → Add people**
-
----
-
-## PART 4 — Final Submission Checklist
-
-Go through every item before you hit submit:
-
-### Code
-
-- [ ] `bash scripts/bootstrap_and_verify.sh` → all 11 lines show `✅`
-- [ ] `python -m src.main --validate-only` → shows `2 passed, 0 failed`
-- [ ] `outputs/diff_viewer.html` opens in browser, shows the dashboard correctly
-- [ ] `outputs/accounts/acme_001/changes.md` has 7 changes listed
-- [ ] `outputs/summary/report.json` shows `"errors": []`
-
-### Repository
-
-- [ ] All files are committed and pushed to GitHub
-- [ ] README.md is readable and complete on the GitHub page
-- [ ] `outputs/` folder is included (not in .gitignore)
-
-### Video
-
-- [ ] Loom video is between 3 and 5 minutes
-- [ ] You showed the demo transcript AND the onboarding transcript
-- [ ] You ran `python -m src.main --batch --mode rules` live on camera
-- [ ] You showed the diff viewer dashboard in the browser
-- [ ] You showed the system prompt
-- [ ] Your face is visible (screen + cam mode)
-
-### Submit
-
-- [ ] Email (or form) includes the **GitHub repo link**
-- [ ] Email (or form) includes the **Loom video link**
-- [ ] If repo is private, confirm collaborator access was granted
+- [ ] GitHub repo is public — confirm by opening it in an incognito window
+- [ ] Video is 4–5 minutes
+- [ ] Showed both transcript files
+- [ ] Ran pipeline live in terminal (with logs visible)
+- [ ] Showed idempotency (second run said UNCHANGED)
+- [ ] Showed dashboard: Changes tab, Unknowns tab, System Prompt tab
+- [ ] Showed GitHub repo on camera
+- [ ] Submitted both GitHub link + Loom link
